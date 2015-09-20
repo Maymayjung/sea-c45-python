@@ -9,4 +9,3 @@ def exhibit_attribute_error():
 
 def exhibit_type_error():
     "Hello" + 9
-
