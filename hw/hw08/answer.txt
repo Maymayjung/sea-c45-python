@@ -1,0 +1,121 @@
+Name: May Hansen
+CodeFellows Python F2
+SEA-C45
+Homework 8
+
+For each problem that requires a written answer, write (or copy-and-paste)
+your answers in this file.  When you are done, you should have replaced all
+the ellipses (the three dots) with your answers.
+
+At the end, you will turn in this file along with your modified
+dna_analysis.py program.
+
+
+Problem 1:
+
+Problem 2:
+
+GC-content: 0.4302926296296296
+GC-content: 0.45105133333333336
+GC-content: 0.6468641125240355
+GC-content: 0.3478523411663431
+GC-content: 0.2631578947368421
+GC-content: 0.4915185185185185
+
+Problem 3:
+We must initialize seq and linenum before they are used. seq is used to store the string of nucleotide data.
+linenum is used to keep track of the ine number when reading the data file. If they are not initialized, then a NameError is produced.
+
+if gc_count is not initialized, then a NameError is produced also. gc_count counts the things wew are looking for.
+
+Problem 4:
+small
+GC-content: 0.3
+AT-content: 0.7
+
+sample1
+GC-content: 0.45105133333333336
+AT-content: 0.548112925925926
+
+sample2
+GC-content: 0.6468641125240355
+AT-content: 0.3531311560764628
+
+sample3
+GC-content: 0.3478523411663431
+AT-content: 0.6521429498904319
+
+sample4
+GC-content: 0.2631578947368421
+AT-content: 0.7236842105263158
+
+sample5
+GC-content: 0.4915185185185185
+AT-content: 0.5081111111111111
+
+sample6
+GC-content: 0.4915185185185185
+AT-content: 0.5081111111111111
+
+Problem 5:
+GC-content: 0.3
+AT-content: 0.7
+G-count: 1
+C-count: 2
+A-count: 5
+T-count: 2
+
+
+
+Problem 6:
+
+A, C, G, and T are not the only values. The data contains Ns. After further research, they signify any nucleotide.
+My process for debugging was to output every non-ACGT letter. I discovered that it output Ns.
+The CG and AT-content values omit the Ns from the denominator count.
+
+output for sample 1:
+GC-content: 0.43059987061138255
+AT-content: 0.5694001293886175
+G-count: 5738773
+C-count: 5879128
+A-count: 7701287
+T-count: 7661547
+N-count: 19265
+The sum of G, C, A, and T-counts: 26980735
+The sum of G, C, A, T and N-counts: 27000000
+The total_count variable: 27000000
+len(seq): 27000000
+
+
+output for test-high-gc-1
+GC-content: 0.6018072289156626
+AT-content: 0.39819277108433737
+G-count: 12176
+C-count: 11800
+A-count: 7970
+T-count: 7894
+N-count: 160
+The sum of G, C, A, and T-counts: 39840
+The sum of G, C, A, T and N-counts: 40000
+The total_count variable: 40000
+len(seq): 40000
+
+
+You can use either total_count or len(seq) as the denominator. They also include the remaining letters (Ns) in the total.
+The sum of A,G, T, and C-counts does not.
+
+Problem 7:
+AT/GC: 0.6616616616616616
+
+
+Problem 8:
+AT/GC: 0.6616616616616616
+
+
+Collaboration:
+
+No collaboration
+
+Reflection:
+
+My only real error was assuming that the GC and AT-content denominator was the total number of nucleotides, not A+T+C+G.
