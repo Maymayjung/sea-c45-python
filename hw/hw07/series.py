@@ -1,11 +1,10 @@
 def fibonacci(n):
 
-    """Example:
-    def fib(n):
-    if n==1 or n==2:
-    return 1
-    return fib(n-1)+fib(n-2)
-    print fib(5)
+    """The Fibonacci numbers are the integer sequence \
+    0, 1, 1, 2, 3, 5, 8, 13, 21, ..., in which each item is formed by \
+    adding the previous two.
+    The Fibonacci sequence up to n-th term using recursive functions.
+
     """
     if (n == 0):
         return 0
@@ -19,8 +18,8 @@ def fibonacci(n):
 
 def lucas(n):
 
-    """Return the nth number from the Lucas sequence.
-
+    """The sequence of Lucas numbers is: 2,1,3,4,7,11,18,29,47,76,123...
+    Return the nth number from the Lucas sequence.
     Example:
     lucas(0) = 2
     lucas(1) = 1
