@@ -1,7 +1,6 @@
-Name: May Hansen
-CodeFellows Python F2
-SEA-C45
-Homework 8
+# Name: May Hansen
+# F2:Python
+# Homework 8: answer
 
 For each problem that requires a written answer, write (or copy-and-paste)
 your answers in this file.  When you are done, you should have replaced all
@@ -118,4 +117,4 @@ No collaboration
 
 Reflection:
 
-My only real error was assuming that the GC and AT-content denominator was the total number of nucleotides, not A+T+C+G.
+It seems like big data contain certain proportion of errors.
