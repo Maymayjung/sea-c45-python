@@ -21,8 +21,8 @@ import sys
 
 # You need to specify a file name
 if len(sys.argv) < 2:
-    print("You must supply a file name as an \
-        argument when running this program.")
+    print("You must supply a file name as an argument when running \
+           this program.")
     sys.exit(2)
 # The file name specified on the command line, as a string.
 filename = sys.argv[1]
@@ -33,7 +33,6 @@ inputfile = open(filename)
 seq = ""
 # The current line number (= the number of lines read so far).
 linenum = 0
-
 
 for line in inputfile:
     linenum = linenum + 1
@@ -51,73 +50,66 @@ for line in inputfile:
 # Total nucleotides seen so far.
 total_count = 0
 # Number of G and C nucleotides seen so far.
-gc_count = 0
-# Number of A and  T nucleotides seen so far.
-at_count = 0
-# Number of A, C, G, and T nucleotides seen so far.
-a_count = 0
-c_count = 0
 g_count = 0
+c_count = 0
+a_count = 0
 t_count = 0
-n_count = 0
+count_unexpected = 0
+
 
 # for each base pair in the string,
 for bp in seq:
     # increment the total number of bps we've seen
-    total_count = total_count + 1
+    # total_count = total_count + 1
 
-    # next, if the bp is a G or a C,
-    if bp == 'C' or bp == 'G':
-        # increment the count of gc
-        gc_count = gc_count + 1
-        if bp == 'C':
-            c_count = c_count + 1
-        else:
-            g_count = g_count + 1
+    if bp == 'C':
+        c_count = c_count + 1
+        total_count = total_count + 1
+        continue
 
-    # next, if the bp is a A or a T,
-    if bp == 'A' or bp == 'T':
-        # increment the count of at
-        at_count = at_count + 1
-        if bp == 'A':
-            a_count = a_count + 1
-        else:
-            t_count = t_count + 1
+    if bp == 'G':
+        g_count = g_count + 1
+        total_count = total_count + 1
+        continue
 
-    if bp == 'N':
-        n_count = n_count + 1
+    if bp == 'A':
+        a_count = a_count + 1
+        total_count = total_count + 1
+        continue
 
+    if bp == 'T':
+        t_count = t_count + 1
+        total_count = total_count + 1
+        continue
 
-acgt_sum = a_count + c_count + g_count + t_count
+        print("Unexpected char count: ", bp)
 
+atgc_count = (g_count + c_count) / (a_count + c_count + g_count + t_count)
+
+gc_count = g_count + c_count
 # divide the gc_count by the total_count
-gc_content = float(gc_count) / acgt_sum
-# divide the at_count by the total_count
-at_content = float(at_count) / acgt_sum
+gc_content = float(gc_count) / total_count
 
-ratio = float(at_count) / float(gc_count)
+at_count = a_count + t_count
+# divide the at_count by the total_count
+at_content = float(at_count) / total_count
 
 # Print the answer
 print('GC-content:', gc_content)
 print('AT-content:', at_content)
-print('G-count:', g_count)
-print('C-count:', c_count)
-print('A-count:', a_count)
-print('T-count:', t_count)
-print('N-count:', n_count)
-print('The sum of G, C, A, and T-counts:', acgt_sum)
-print('The sum of G, C, A, T and N-counts:', acgt_sum + n_count)
-print('The total_count variable:', total_count)
-print('len(seq):', len(seq))
-print('AT/GC:', ratio)
+print('A-number:', a_count)
+print('T-number:', t_count)
+print('G-number:', g_count)
+print('C-number:', c_count)
+print('total-number:', total_count)
+print("AT/GC ratio:", atgc_count)
 
-gc_quantity = ''
-
-if gc_content > .60:
-    gc_quantity = 'high'
-elif gc_content < .4:
-    gc_quantity = 'low'
+# Categorize microorganisms:
+if gc_content >= 0.6:
+    content = "high GC content"
 else:
-    gc_quantity = 'moderate'
-
-print('GC classification: ', gc_quantity, 'gc content')
+    if gc_content <= 0.4:
+        content = "low GC content"
+    else:
+        content = "moderate GC content"
+print("GC Classification:", content)
