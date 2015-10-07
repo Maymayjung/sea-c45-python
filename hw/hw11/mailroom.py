@@ -1,21 +1,21 @@
-# def createreport():
-#     """Print list of donors, sorted by total historical donation amount"""
-#     print u" name| total donated | # of donations| average donation"
-#     print u"=" * 75
-#     for a, b in donors.items():
-#         name = a
-#         donationsum = sum(b[:])
-#         numdonations = len(b[:])
-#         average = donationsum / numdonations
-#         indent1 = u" " * (32 - (len(name) + len(str(donationsum))))
-#         indent2 = u" " * (42 - (len(name) + len(indent1) +
-#                  len(str(donationsum))))
-#         indent3 = u" " * (65 - (len(name) + len(indent1) +
-#                  len(str(donationsum)) + len(indent2) +
-#                  len(str(numdonations)) + len(str(average))))
-#         print name, indent1, donationsum, indent2, numdonations, indent3
-#     average
-#     print u"=" * 75
+def createreport():
+    """Create a detailed report of donors and their history"""
+    donorreport = []
+    for (name, donation_amount) in donors():
+        totaldonation = sum(donation_amount)
+        donationtimes = len(donation_amount)
+        avgdonate = round((totaldonation / donationtimes), 2)
+        donorreport.append((name, totaldonation, donationtimes,
+                            avgdonate))
+    donorreport.sort(key=lambda x: x[1], reverse=True)
+    print("\n\n\n")
+    print("{:20} {:30} {:40} {:40}\n".format(
+          "Name", "Total Donations", "# of Donations",
+          "Avg. Donation"))
+    for i in donorreport:
+        print("{:20} {:<30} {:<40} {:<40}".format(
+              i[0], i[1], i[2], i[3]))
+    print("\n\n\n")
 
 
 def get_name():
@@ -85,9 +85,8 @@ if (__name__ == '__main__'):
         if (menu_option == "T"):
             get_name()
         elif (menu_option == "R"):
-        #     pass
-        #     # print_report()
-        # elif (menu_option == "quit"):
-        #     break
-        # else:
-        #     print("Sorry. '%s' is not a valid menu option." % menu_option)
+            get_amount()
+        elif (menu_option == "quit"):
+            break
+        else:
+            print("Sorry. '%s' is not a valid menu option." % menu_option)
