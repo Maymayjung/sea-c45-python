@@ -85,7 +85,7 @@ if (__name__ == '__main__'):
         if (menu_option == "T"):
             get_name()
         elif (menu_option == "R"):
-            get_amount()
+            createreport()
         elif (menu_option == "quit"):
             break
         else:
