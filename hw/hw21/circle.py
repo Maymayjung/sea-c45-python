@@ -4,7 +4,6 @@
 fill this in so it will pass all the tests.
 """
 import math
-import trigrams
 
 
 def test_open_file():
@@ -17,14 +16,6 @@ def test_read_lines():
 
 
 class Circle(object):
-
-    def _init_(self, radius):
-        """
-        Initialize a circle with a given radius.
-        """
-    self.radius = radius
-    self.diameter = 2 * radius
-    self.area = math.pi * radius ** 2
 
     def _get_d(self):
         return self._diameter
