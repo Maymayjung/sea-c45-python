@@ -6,34 +6,27 @@ fill this in so it will pass all the tests.
 import math
 
 
-def test_open_file():
-    trigrams.test_open_file()
-
-
-def test_read_lines():
-    lines = trigrams.open_file()
-    assert (len(lines) > 0)
-
-
 class Circle(object):
+    def __init__(self, radius):
+        self.radius = radius
 
-    def _get_d(self):
-        return self._diameter
+    @property
+    def diameter(self):
+        return self.radius * 2
 
-    def _set_d(self, value):
-        self._diameter = value
+    @property
+    def area(self):
+        return math.pi * (self.radius ** 2)
+
+    @diameter.setter
+    def diameter(self, value):
         self.radius = value / 2
-        self.area = math.pi * self.radius ** 2
-
-    def _del_d(self):
-        del self._diameter
-    diameter = property(_get_d, _set_d, _del_d)
 
     def __str__(self):
-        return "Circle with radius: %.6f" % (self.radius)
+        return "Circle with radius: {:.6f}".format(self.radius)
 
     def __repr__(self):
-        return "Circle(%d)" % (self.radius)
+        return "Circle({r})".format(r=self.radius)
 
     def __add__(self, other):
         value = self.radius.__add__(other.radius)
@@ -53,3 +46,5 @@ class Circle(object):
             return -1
         else:
             return 0
+
+    doc = "largest distance between any two points on a circle"
