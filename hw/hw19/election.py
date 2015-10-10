@@ -59,8 +59,17 @@ def most_recent_poll_row(poll_rows, pollster, state):
     Given a list of *PollDataRow*s, returns the most recent row with the
     specified *Pollster* and *State*. If no such row exists, returns None.
     """
-# TODO: Implement this function
-    pass
+    recent = "Jan 01 1950"
+    recent_x = None
+    for x in poll_rows:
+        if (x["Pollster"] == pollster and x["State"] == state and earlier_date(recent, x["Date"])):
+            recent = x["Date"]
+            recent_x = x
+        else:
+            pass
+    return recent_x
+    # TODO: Implement this function
+    # pass
 
 
 ###############################################################################
@@ -72,8 +81,13 @@ def unique_column_values(rows, column_name):
     Given a list of rows and the name of a column (a string),
     returns a set containing all values in that column.
     """
-# TODO: Implement this function
-    pass
+    s = set()
+    for x in rows:
+        s.update([x[column_name]])
+    return s
+
+    # TODO: Implement this function
+    # pass
 
 
 def pollster_predictions(poll_rows):
@@ -81,8 +95,30 @@ def pollster_predictions(poll_rows):
     Given a list of *PollDataRow*s, returns *PollsterPredictions*.
     For a given pollster, uses only the most recent poll for a state.
     """
-# TODO: Implement this function
-    pass
+    d = poll_rows.copy()
+    i = 0
+    edge_index = {}
+    for row in poll_rows:
+        i += 1
+        row.update({"ID": i})
+        # The first step is to give all polls a unique ID key
+        edge_index.update({i: state_edges([row])})
+        # We also need  to map ID key to state edge
+    predict = {}
+    poll_unq = unique_column_values(poll_rows, "Pollster")
+    state_unq = unique_column_values(poll_rows, "State")
+    for pollster in poll_unq:
+        predict.update({pollster: {}})
+        for state in state_unq:
+            recent = most_recent_poll_row(d, pollster, state)
+            if (recent):
+                index = recent["ID"]
+                edge = edge_index[index]
+                predict[pollster].update(edge)
+    return predict
+
+    # TODO: Implement this function
+    # pass
 
 
 ###############################################################################
@@ -94,6 +130,7 @@ def average_error(state_edges_predicted, state_edges_actual):
     Given predicted *StateEdges* and actual *StateEdges*, returns
     the average error of the prediction.
     """
+
 # TODO: Implement this function
     pass
 
@@ -171,6 +208,7 @@ def weighted_average(items, weights):
     """
     assert len(items) > 0
     assert len(items) == len(weights)
+
 # TODO: Implement this function
     pass
 
