@@ -1,9 +1,9 @@
 def createreport():
     """Create a detailed report of donors and their history"""
     donorreport = []
-    for (name, donation_amount) in donors():
-        totaldonation = sum(donation_amount)
-        donationtimes = len(donation_amount)
+    for name in donors:
+        totaldonation = (donors[name][1])
+        donationtimes = (donors[name][0])
         avgdonate = round((totaldonation / donationtimes), 2)
         donorreport.append((name, totaldonation, donationtimes,
                             avgdonate))
@@ -84,7 +84,7 @@ if (__name__ == '__main__'):
         menu_option = input("> ")
         if (menu_option == "T"):
             get_name()
-        elif (menu_option == "R"):
+        if (menu_option == "R"):
             createreport()
         elif (menu_option == "quit"):
             break
