@@ -1,33 +1,68 @@
-def get_random_new_key():
-    candidates = []
-    for n in key_list:
-        if (n[0] == new_text[-1]):
-            candidates.append(n)
-    new_text.append(candidates[random.randrange(0, len(candidates))][1])
-
+import sys
 import random
-book = open('sherlock.txt', 'r')
-text_dict = {}
-text_list = ''.join(book.read().split('"')).split()
-book.close()
 
-for i in range(2, len(text_list)):
-    if ((text_list[i - 2], text_list[i - 1]) in text_dict):
-        text_dict[(text_list[i - 2], text_list[i - 1])].append(text_list[i])
-    else:
-        text_dict[text_list[i - 2], text_list[i - 1]] = [text_list[i]]
+# Hannah$ cd Documents/CodeFellows/sea-c45-python/hw/hw13
 
-key_list = list(text_dict.keys())
-new_text = list(random.choice(key_list))
-new_text[0] = new_text[0].capitalize()
 
-for i in range(300):
-    if ((new_text[-2], new_text[-1]) in text_dict):
-        new_text.append(random.choice(text_dict[new_text[-2], new_text[-1]]))
-    else:
-        get_random_new_key()
+def main(filename, new_story_length=100):
 
-if (new_text[-1][-1] != "."):
-    new_text[-1] = new_text[-1] + "."
+    words = words_from_file(filename)
 
-print(' '.join(new_text))
+    trigrams = trigrams_from_words(words)
+
+    output = story_from_trigrams(trigrams, new_story_length)
+
+    print ('-------------------------------------')
+    return output
+
+
+def words_from_file(filename):
+    with open(filename, 'r') as textfile:
+        return [word.strip('\n') for l in textfile.readlines()
+                for word in l.split(' ')]
+
+
+def trigrams_from_words(words):
+    trigrams = {}
+    for i, w in enumerate(words):
+        if i + 2 < len(words):
+            one = w.strip()
+            two = words[i + 1].strip()
+            three = words[i + 2].strip()
+            onetwo = '{} {}'.format(one, two)
+            if onetwo not in trigrams.keys():
+                trigrams[onetwo] = []
+            trigrams[onetwo].append(three)
+    return trigrams
+
+
+def story_from_trigrams(trigrams, num, new_words=[]):
+    if len(new_words) >= int(num) or int(num) < 3:
+        return ' '.join(new_words)
+
+    if not new_words:
+        starting_two = random.choice(list(trigrams.keys()))
+        new_words.extend(starting_two.split(' '))
+
+    if len(new_words) > 1:
+        onetwo = '{} {}'.format(new_words[-2], new_words[-1])
+        if onetwo not in trigrams.keys():
+            onetwo = random.choice(trigrams.keys())
+        three = random.choice(trigrams[onetwo])
+        new_words.append(three)
+        return story_from_trigrams(trigrams, num, new_words)
+
+
+if __name__ == '__main__':
+    try:
+        filename = sys.argv[1]
+        try:
+            new_story_length = sys.argv[2]
+        except IndexError:
+            print('No new story length given; defaulting to new story length'
+                  ' of 100 words')
+            new_story_length = 100
+        output = main(filename, new_story_length)
+        print (output)
+    except IndexError:
+        print ('No filename given.')
