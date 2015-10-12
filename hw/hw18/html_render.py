@@ -65,6 +65,9 @@ class Head(Element):
         Element.__init__(self, name="head", content=content)
 
 
+H = Head
+
+
 class Title(Element):
 
     def __init__(self, content=""):
@@ -126,3 +129,15 @@ class A(Element):
         file_out.write('%s<a href="%s">%s</a>\n' % (indent,
                                                     self.link,
                                                     self.name))
+
+
+class Ul(Element):
+
+    def __init__(self, **kwargs):
+        Element.__init__(self, name="Ul", **kwargs)
+
+
+class Li(Element):
+
+    def __init__(self, content="", **kwargs):
+        Element.__init__(self, content=content, name="li", **kwargs)
