@@ -1,6 +1,6 @@
 import trigrams
 
-storyF = "/home/may/Desktop/Python/sea-c45-python/hw/hw21/sherlock_small.txt"
+storyF = "./sherlock_small.txt"
 
 
 def test_open_flie():
