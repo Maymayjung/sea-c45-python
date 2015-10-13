@@ -64,9 +64,8 @@ C-count: 5879128
 
 
 Problem 6:
-In sample_1.fastq, Sum count, and Total count are different.
-Sum count is 26980735 and total count is 27000000
-There are 'N's in the sequence. So, it add more count to total than need for calculating GC-content. The program was incorrectly computing GC content.
+The correct denominator should be the sum of A, T, C and G numbers,
+rather than total-number.
 
 
 Problem 7:
