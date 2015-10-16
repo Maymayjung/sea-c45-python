@@ -1,0 +1,86 @@
+# Name: May Hansen
+# F2:Python
+# Homework 8: answer
+
+For each problem that requires a written answer, write (or copy-and-paste)
+your answers in this file.  When you are done, you should have replaced all
+the ellipses (the three dots) with your answers.
+
+At the end, you will turn in this file along with your modified
+dna_analysis.py program.
+
+
+Problem 1:
+
+Problem 2:
+
+GC-content: 0.4302926296296296
+GC-content: 0.45105133333333336
+GC-content: 0.6468641125240355
+GC-content: 0.3478523411663431
+GC-content: 0.2631578947368421
+GC-content: 0.4915185185185185
+
+Problem 3:
+We must initialize seq and linenum before they are used. seq is used to store the string of nucleotide data.
+linenum is used to keep track of the ine number when reading the data file. If they are not initialized, then a NameError is produced.
+
+if gc_count is not initialized, then a NameError is produced also. gc_count counts the things wew are looking for.
+
+Problem 4:
+small
+GC-content: 0.3
+AT-content: 0.7
+
+sample1
+GC-content: 0.45105133333333336
+AT-content: 0.548112925925926
+
+sample2
+GC-content: 0.6468641125240355
+AT-content: 0.3531311560764628
+
+sample3
+GC-content: 0.3478523411663431
+AT-content: 0.6521429498904319
+
+sample4
+GC-content: 0.2631578947368421
+AT-content: 0.7236842105263158
+
+sample5
+GC-content: 0.4915185185185185
+AT-content: 0.5081111111111111
+
+sample6
+GC-content: 0.4915185185185185
+AT-content: 0.5081111111111111
+
+Problem 5:
+A-count: 7701287
+T-count: 7661547
+G-count: 5738773
+C-count: 5879128
+
+
+Problem 6:
+The correct denominator should be the sum of A, T, C and G numbers,
+rather than total-number.
+
+
+Problem 7:
+
+AT/GC Ratio: 1.3223416174746196
+
+Problem 8:
+
+Moderate gc
+
+
+Collaboration:
+
+No collaboration
+
+Reflection:
+
+It seems like big data contain certain proportion of errors.
